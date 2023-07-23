@@ -1,0 +1,1 @@
+add_executable(MyProject main.c) # specify the executable to be built and its source files
