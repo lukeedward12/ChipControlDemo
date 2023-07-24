@@ -7,7 +7,7 @@ This repository is C project to provide API access to interacting with a LTC2943
 
 ## Build
 To build:
-    . ./build.sh
+    `. ./build.sh`
 
 TODO: To test:
-    . ./test.sh
+    `. ./test.sh`
