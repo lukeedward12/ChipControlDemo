@@ -4,36 +4,36 @@
 #include <stdint.h>
 
 enum ChipControlStatusCodes {
-  CC_STATUS_OK,
-  CC_STATUS_ERROR,
-  CC_STATUS_ERROR_PARAMS
+	CC_STATUS_OK,
+	CC_STATUS_ERROR,
+	CC_STATUS_ERROR_PARAMS
 };
 
 typedef struct LTC2943RegisterMap {
-  uint8_t Status;
-  uint8_t Control;
-  uint8_t Accumlated_Charge_MSB;
-  uint8_t Accumlated_Charge_LSB;
-  uint8_t Charge_Threshold_High_MSB;
-  uint8_t Charge_Threshold_High_LSB;
-  uint8_t Charge_Threshold_Low_MSB;
-  uint8_t Charge_Threshold_Low_LSB;
-  uint8_t Voltage_MSB;
-  uint8_t Voltage_LSB;
-  uint8_t Voltage_Threshold_High_MSB;
-  uint8_t Voltage_Threshold_High_LSB;
-  uint8_t Voltage_Threshold_Low_MSB;
-  uint8_t Voltage_Threshold_Low_LSB;
-  uint8_t Current_MSB;
-  uint8_t Current_LSB;
-  uint8_t Current_Threshold_High_MSB;
-  uint8_t Current_Threshold_High_LSB;
-  uint8_t Current_Threshold_Low_MSB;
-  uint8_t Current_Threshold_Low_LSB;
-  uint8_t Temperature_MSB;
-  uint8_t Temperature_LBS;
-  uint8_t Temperature_Threshold_High;
-  uint8_t Temperature_Threshold_Low;
+	uint8_t Status;
+	uint8_t Control;
+	uint8_t Accumlated_Charge_MSB;
+	uint8_t Accumlated_Charge_LSB;
+	uint8_t Charge_Threshold_High_MSB;
+	uint8_t Charge_Threshold_High_LSB;
+	uint8_t Charge_Threshold_Low_MSB;
+	uint8_t Charge_Threshold_Low_LSB;
+	uint8_t Voltage_MSB;
+	uint8_t Voltage_LSB;
+	uint8_t Voltage_Threshold_High_MSB;
+	uint8_t Voltage_Threshold_High_LSB;
+	uint8_t Voltage_Threshold_Low_MSB;
+	uint8_t Voltage_Threshold_Low_LSB;
+	uint8_t Current_MSB;
+	uint8_t Current_LSB;
+	uint8_t Current_Threshold_High_MSB;
+	uint8_t Current_Threshold_High_LSB;
+	uint8_t Current_Threshold_Low_MSB;
+	uint8_t Current_Threshold_Low_LSB;
+	uint8_t Temperature_MSB;
+	uint8_t Temperature_LBS;
+	uint8_t Temperature_Threshold_High;
+	uint8_t Temperature_Threshold_Low;
 } LTC2943RegisterMap;
 
 static LTC2943RegisterMap register_map = {
@@ -86,7 +86,7 @@ enum Alert { NoAlert = 0, Alert = 1 };
 uint8_t ChipControl_Initialize(void);
 
 typedef struct GetADCModeResponse {
-  uint8_t mode;
+	uint8_t mode;
 } GetADCModeResponse;
 
 /**
@@ -99,7 +99,7 @@ typedef struct GetADCModeResponse {
 uint8_t ChipControl_Get_ADC_Mode(GetADCModeResponse *response);
 
 typedef struct SetADCModeInput {
-  uint8_t mode;
+	uint8_t mode;
 } SetADCModeInput;
 
 /**
@@ -112,7 +112,7 @@ typedef struct SetADCModeInput {
 uint8_t ChipControl_Set_ADC_Mode(SetADCModeInput *input);
 
 typedef struct GetTempStatusResponse {
-  uint8_t status;
+	uint8_t status;
 } GetTempStatusResponse;
 
 /**
@@ -125,8 +125,8 @@ typedef struct GetTempStatusResponse {
 uint8_t ChipControl_Get_Temp_Status(GetTempStatusResponse *response);
 
 typedef struct SetChargeThresholdInput {
-  uint32_t max_threshold;
-  uint32_t min_threshold;
+	uint32_t max_threshold;
+	uint32_t min_threshold;
 } SetChargeThresholdInput;
 
 /**
@@ -140,8 +140,8 @@ uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input);
 
 typedef struct GetChargeStatusResponse {
 
-  uint8_t high_charge_status;
-  uint8_t low_charge_status;
+	uint8_t high_charge_status;
+	uint8_t low_charge_status;
 
 } GetChargeStatusResponse;
 
