@@ -51,6 +51,12 @@ static LTC2943RegisterMap register_map = {
 #define STATUS_REGISTER_TEMP_ALERT_MASK 0x10
 #define STATUS_REGISTER_TEMP_ALERT_BIT 4
 
+// Status Register Charge Alert Mask -> Bits [3:2]: 0000 1100
+#define STATUS_REGISTER_CHARGE_HIGH_ALERT_MASK 0x8
+#define STATUS_REGISTER_CHARGE_HIGH_ALERT_BIT 3
+#define STATUS_REGISTER_CHARGE_LOW_ALERT_MASK 0x4
+#define STATUS_REGISTER_CHARGE_LOW_ALERT_BIT 2
+
 // Battery Characteristics. As a battery for this example was not provided,
 // the example application provided in the LTC2943 (Pg. 11) will be used
 // such M = 4096, I_MAX = 100 Milli-Amps, Q_BAT = 2228 mAh, R_SENSE = 500
@@ -122,8 +128,22 @@ typedef struct SetChargeThresholdInput {
   uint32_t min_threshold;
 } SetChargeThresholdInput;
 
+/**
+ * @brief Takes a desired max/min charge, converts from engineering units
+ * to 16 bit fixed width, and sets the LTC2943 Charge Threshold Registers
+ *
+ * @param input Desired max/min charge thresholds in mAH.
+ * @return uint8_t
+ */
 uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input);
 
-uint8_t ChipControl_Get_Charge_Status();
+typedef struct GetChargeStatusResponse {
+
+  uint8_t high_charge_status;
+  uint8_t low_charge_status;
+
+} GetChargeStatusResponse;
+
+uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response);
 
 #endif // CHIPCONTROL_H

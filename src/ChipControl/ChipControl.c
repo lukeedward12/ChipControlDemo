@@ -78,8 +78,8 @@ uint8_t ChipControl_Get_Temp_Status(GetTempStatusResponse *response) {
   bool read_status = 0;
 
   // Probe the LTC2943's Control Register
-  read_status = LTC2943_Read(register_map.Control, &probed_status_register,
-                             dataSize);
+  read_status =
+      LTC2943_Read(register_map.Status, &probed_status_register, dataSize);
 
   if (read_status != LTC_STATUS_OK) {
     return CC_STATUS_ERROR;
@@ -115,7 +115,7 @@ uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input) {
   // mAh = 1 Least Significant Bit Fixed Width = Desired Charge [mAh] /
   // 0.034 [mAh / LSb]
   uint16_t max_threshold_fixed = input->max_threshold / q_LSb;
-  uint16_t min_threshold_fixed = input->max_threshold / q_LSb;
+  uint16_t min_threshold_fixed = input->min_threshold / q_LSb;
 
   // Split Fixed Width Threshold to LSB and MSB
   uint8_t max_threshold_fixed_LSB = max_threshold_fixed & LSB_16BIT_MASK;
@@ -144,12 +144,45 @@ uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input) {
 
   if (write_status_max_lsb != LTC_STATUS_OK ||
       write_status_max_msb != LTC_STATUS_OK ||
-      write_status_min_lsb != LTC_STATUS_OK != write_status_min_msb !=
-          LTC_STATUS_OK) {
+      write_status_min_lsb != LTC_STATUS_OK ||
+      write_status_min_msb != LTC_STATUS_OK) {
     return CC_STATUS_ERROR;
   }
 
   return CC_STATUS_OK;
 }
 
-uint8_t ChipControl_Get_Charge_Status() { return CC_STATUS_OK; }
+uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response) {
+
+  uint8_t probed_status_register = 0;
+  uint8_t dataSize = 1;
+  bool read_status = 0;
+
+  // Probe the LTC2943's Control Register
+  read_status = LTC2943_Read(register_map.Control, &probed_status_register,
+                             dataSize);
+
+  if (read_status != LTC_STATUS_OK) {
+    return CC_STATUS_ERROR;
+  }
+
+  // To get the charge alert mask, AND the probed Status Register with the
+  // Mask, and then move the bit to the MSb
+  uint8_t temp_alert_status =
+      (probed_status_register & STATUS_REGISTER_TEMP_ALERT_MASK) >>
+      STATUS_REGISTER_TEMP_ALERT_BIT;
+
+  // To get the charge alert mask, AND the probed Status Register with the
+  // Mask, and then move the bit to the MSb
+  uint8_t charge_high_alert_status =
+      (probed_status_register & STATUS_REGISTER_CHARGE_HIGH_ALERT_MASK) >>
+      STATUS_REGISTER_CHARGE_HIGH_ALERT_BIT;
+  uint8_t charge_low_alert_status =
+      (probed_status_register & STATUS_REGISTER_CHARGE_LOW_ALERT_MASK) >>
+      STATUS_REGISTER_CHARGE_LOW_ALERT_BIT;
+
+  response->high_charge_status = charge_high_alert_status;
+  response->low_charge_status = charge_low_alert_status;
+
+  return CC_STATUS_OK;
+}
