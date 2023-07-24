@@ -47,6 +47,9 @@ static LTC2943RegisterMap register_map = {0x00, 0x01, 0x02, 0x03, 0x04,
 // ADC Mode Mask -> Bits [7:8]: 1100 0000
 #define CONTROL_REGISTER_ADC_MODE_MASK 0xC0
 
+// NOT ADC Mode Mask -> Bits [7:8]: 0011 0000
+#define CONTROL_REGISTER_NOT_ADC_MODE_MASK 0x3F
+
 enum ADCMode
 {
     SLEEP = 0,
@@ -75,7 +78,20 @@ typedef struct GetADCModeResponse
  * @return uint8_t
  */
 uint8_t ChipControl_Get_ADC_Mode(GetADCModeResponse *response);
-uint8_t ChipControl_Set_ADC_Mode();
+
+typedef struct SetADCModeInput
+{
+    uint8_t mode;
+} SetADCModeInput;
+
+/**
+ * @brief Sets the LTC2943's Control Register with a desired ADC Mode (Sleep, Manual, Scan, or Auto)
+ *
+ * @param input
+ * @return uint8_t
+ */
+uint8_t ChipControl_Set_ADC_Mode(SetADCModeInput *input);
+
 uint8_t ChipControl_Get_Temp_Status();
 uint8_t ChipControl_Set_Charge_Thresholds();
 uint8_t ChipControl_Get_Charge_Status();
