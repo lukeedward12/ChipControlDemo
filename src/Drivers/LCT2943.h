@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "stdbool.h"
 
-enum LTC2943_Status_Codes {
+enum LTC2943StatusCodes {
     LTC_STATUS_OK,
     LTC_STATUS_ERROR,
     LTC_STATUS_ERROR_PARAMS

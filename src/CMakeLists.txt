@@ -8,3 +8,4 @@ set(SOURCES
 
 add_executable(target ${SOURCES}) # specify the executable to be built and its source files
 target_include_directories(target PUBLIC Drivers)
+target_include_directories(target PUBLIC ChipControl)
