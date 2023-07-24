@@ -63,14 +63,14 @@ static LTC2943RegisterMap register_map = {
 // such M = 4096, I_MAX = 100 Milli-Amps, Q_BAT = 2228 mAh, R_SENSE = 500
 // Milli-Ohms, and Q_LSb = 0.034 Milli-Ah
 #define CHARGE_PRESCALAR 4096
-#define R_SENSE 500 // Milli-Ohm
-#define I_MAX 100   // Milli-Amps
-#define q_LSb 0.034 // Milli-Ah
+#define R_SENSE 500  // Milli-Ohm
+#define I_MAX 100    // Milli-Amps
+#define q_LSb 0.034f // Milli-Ah
 #define BATTERY_CHARGE_MAX 2228
 #define BATTERY_CHARGE_MIN 0
 
-#define LSB_16BIT_MASK 0x0F
-#define MSB_16BIT_MASK 0xF0
+#define LSB_16BIT_MASK 0x00FF
+#define MSB_16BIT_MASK 0xFF00
 #define MSB_16BIT_POSITION 8
 
 enum ADCMode { SLEEP = 0, MANUAL = 1, SCAN = 2, AUTO = 3 };

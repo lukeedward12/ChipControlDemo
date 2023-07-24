@@ -4,8 +4,12 @@
 #include "LTC2943.h"
 
 typedef struct RegisterMapValues {
-  uint16_t status_register;
-  uint16_t control_register;
+	uint16_t status_register;
+	uint16_t control_register;
+	uint16_t charge_threshold_high_msb;
+	uint16_t charge_threshold_high_lsb;
+	uint16_t charge_threshold_low_msb;
+	uint16_t charge_threshold_low_lsb;
 } RegisterMapValues;
 
 /**

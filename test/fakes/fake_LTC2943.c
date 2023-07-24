@@ -31,5 +31,21 @@ bool LTC2943_Write(uint8_t address, uint8_t *src, uint8_t dataSize) {
 	if (address == register_map.Control) {
 		register_map_values.control_register = *src;
 	}
+
+	if (address == register_map.Charge_Threshold_High_LSB) {
+		register_map_values.charge_threshold_high_lsb = *src;
+	}
+
+	if (address == register_map.Charge_Threshold_High_MSB) {
+		register_map_values.charge_threshold_high_msb = *src;
+	}
+
+	if (address == register_map.Charge_Threshold_Low_LSB) {
+		register_map_values.charge_threshold_low_lsb = *src;
+	}
+
+	if (address == register_map.Charge_Threshold_Low_MSB) {
+		register_map_values.charge_threshold_low_msb = *src;
+	}
 	return LTC_STATUS_OK;
 }
