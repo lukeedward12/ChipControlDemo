@@ -14,9 +14,9 @@ uint8_t Get_ADC_Mode_AUTO() {
 	GetADCModeResponse get_adc_response;
 
 	// Unit Under Test
-	ChipControl_Get_ADC_Mode(&get_adc_response);
+	uint8_t api_return = ChipControl_Get_ADC_Mode(&get_adc_response);
 
-	if (get_adc_response.mode == AUTO) {
+	if (get_adc_response.mode == AUTO && api_return == CC_STATUS_OK) {
 		return SUCCESS;
 	} else {
 		return FAILURE;
@@ -33,9 +33,9 @@ uint8_t Get_ADC_Mode_SCAN() {
 	GetADCModeResponse get_adc_response;
 
 	// Unit Under Test
-	ChipControl_Get_ADC_Mode(&get_adc_response);
+	uint8_t api_return = ChipControl_Get_ADC_Mode(&get_adc_response);
 
-	if (get_adc_response.mode == SCAN) {
+	if (get_adc_response.mode == SCAN && api_return == CC_STATUS_OK) {
 		return SUCCESS;
 	} else {
 		return FAILURE;
@@ -52,9 +52,10 @@ uint8_t Get_ADC_Mode_MANUAL() {
 	GetADCModeResponse get_adc_response;
 
 	// Unit Under Test
-	ChipControl_Get_ADC_Mode(&get_adc_response);
+	uint8_t api_return = ChipControl_Get_ADC_Mode(&get_adc_response);
 
-	if (get_adc_response.mode == MANUAL) {
+	if (get_adc_response.mode == MANUAL &&
+	    api_return == CC_STATUS_OK) {
 		return SUCCESS;
 	} else {
 		return FAILURE;
@@ -71,9 +72,10 @@ uint8_t Get_ADC_Mode_SLEEP() {
 	GetADCModeResponse get_adc_response;
 
 	// Unit Under Test
-	ChipControl_Get_ADC_Mode(&get_adc_response);
+	uint8_t api_return = ChipControl_Get_ADC_Mode(&get_adc_response);
 
-	if (get_adc_response.mode == MANUAL) {
+	if (get_adc_response.mode == MANUAL &&
+	    api_return == CC_STATUS_OK) {
 		return SUCCESS;
 	} else {
 		return FAILURE;

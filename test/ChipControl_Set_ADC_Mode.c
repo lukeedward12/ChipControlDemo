@@ -15,18 +15,19 @@ uint8_t Set_ADC_Mode_AUTO() {
 	    CONTROL_REGISTER_NOT_ADC_MODE_MASK;
 
 	// Unit Under Test
-	ChipControl_Set_ADC_Mode(&input);
+	uint8_t api_return = ChipControl_Set_ADC_Mode(&input);
 
 	// Retrieve Control Register, Mask out non ADC Bits, move to the
 	// LSb, and check if equal to the desired mode
 	if ((register_map_values.control_register &
 	     CONTROL_REGISTER_ADC_MODE_MASK) >>
-		CONTROL_REGISTER_ADC_MODE_BIT !=
-	    AUTO) {
-		return FAILURE;
+		    CONTROL_REGISTER_ADC_MODE_BIT ==
+		AUTO &&
+	    api_return == CC_STATUS_OK) {
+		return SUCCESS;
 	}
 
-	return SUCCESS;
+	return FAILURE;
 }
 
 uint8_t Set_ADC_Mode_SCAN();
@@ -40,18 +41,19 @@ uint8_t Set_ADC_Mode_SCAN() {
 	    CONTROL_REGISTER_NOT_ADC_MODE_MASK;
 
 	// Unit Under Test
-	ChipControl_Set_ADC_Mode(&input);
+	uint8_t api_return = ChipControl_Set_ADC_Mode(&input);
 
 	// Retrieve Control Register, Mask out non ADC Bits, move to the
 	// LSb, and check if equal to the desired mode
 	if ((register_map_values.control_register &
 	     CONTROL_REGISTER_ADC_MODE_MASK) >>
-		CONTROL_REGISTER_ADC_MODE_BIT !=
-	    SCAN) {
-		return FAILURE;
+		    CONTROL_REGISTER_ADC_MODE_BIT ==
+		SCAN &&
+	    api_return == CC_STATUS_OK) {
+		return SUCCESS;
 	}
 
-	return SUCCESS;
+	return FAILURE;
 }
 
 uint8_t Set_ADC_Mode_MANUAL();
@@ -65,18 +67,19 @@ uint8_t Set_ADC_Mode_MANUAL() {
 	    CONTROL_REGISTER_NOT_ADC_MODE_MASK;
 
 	// Unit Under Test
-	ChipControl_Set_ADC_Mode(&input);
+	uint8_t api_return = ChipControl_Set_ADC_Mode(&input);
 
 	// Retrieve Control Register, Mask out non ADC Bits, move to the
 	// LSb, and check if equal to the desired mode
 	if ((register_map_values.control_register &
 	     CONTROL_REGISTER_ADC_MODE_MASK) >>
-		CONTROL_REGISTER_ADC_MODE_BIT !=
-	    MANUAL) {
-		return FAILURE;
+		    CONTROL_REGISTER_ADC_MODE_BIT ==
+		MANUAL &&
+	    api_return == CC_STATUS_OK) {
+		return SUCCESS;
 	}
 
-	return SUCCESS;
+	return FAILURE;
 }
 
 uint8_t Set_ADC_Mode_SLEEP();
@@ -90,18 +93,19 @@ uint8_t Set_ADC_Mode_SLEEP() {
 	    CONTROL_REGISTER_NOT_ADC_MODE_MASK;
 
 	// Unit Under Test
-	ChipControl_Set_ADC_Mode(&input);
+	uint8_t api_return = ChipControl_Set_ADC_Mode(&input);
 
 	// Retrieve Control Register, Mask out non ADC Bits, move to the
 	// LSb, and check if equal to the desired mode
 	if ((register_map_values.control_register &
 	     CONTROL_REGISTER_ADC_MODE_MASK) >>
-		CONTROL_REGISTER_ADC_MODE_BIT !=
-	    SLEEP) {
-		return FAILURE;
+		    CONTROL_REGISTER_ADC_MODE_BIT ==
+		SLEEP &&
+	    api_return == CC_STATUS_OK) {
+		return SUCCESS;
 	}
 
-	return SUCCESS;
+	return FAILURE;
 }
 
 int main() {
