@@ -167,18 +167,12 @@ uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response) {
 	bool read_status = 0;
 
 	// Probe the LTC2943's Control Register
-	read_status = LTC2943_Read(register_map.Control,
+	read_status = LTC2943_Read(register_map.Status,
 				   &probed_status_register, dataSize);
 
 	if (read_status != LTC_STATUS_OK) {
 		return CC_STATUS_ERROR;
 	}
-
-	// To get the charge alert mask, AND the probed Status Register
-	// with the Mask, and then move the bit to the MSb
-	uint8_t temp_alert_status =
-	    (probed_status_register & STATUS_REGISTER_TEMP_ALERT_MASK) >>
-	    STATUS_REGISTER_TEMP_ALERT_BIT;
 
 	// To get the charge alert mask, AND the probed Status Register
 	// with the Mask, and then move the bit to the MSb

@@ -45,3 +45,15 @@ add_test(NAME ChipControl_Set_Charge_Thresholds COMMAND ChipControl_Set_Charge_T
 target_include_directories(ChipControl_Set_Charge_Thresholds PRIVATE ${SOURCE_DIR}/ChipControl)
 target_include_directories(ChipControl_Set_Charge_Thresholds PRIVATE ${SOURCE_DIR}/Drivers)
 target_include_directories(ChipControl_Set_Charge_Thresholds PRIVATE ${TEST_DIR}/fakes)
+
+set(SOURCES_GET_CHARGE
+    ChipControl_Get_Charge_Status.c
+    ${SOURCE_DIR}/ChipControl/ChipControl.c
+    fakes/fake_LTC2943.c
+    # Add more source files here
+)
+add_executable(ChipControl_Get_Charge_Status ${SOURCES_GET_CHARGE})
+add_test(NAME ChipControl_Get_Charge_Status COMMAND ChipControl_Get_Charge_Status) 
+target_include_directories(ChipControl_Get_Charge_Status PRIVATE ${SOURCE_DIR}/ChipControl)
+target_include_directories(ChipControl_Get_Charge_Status PRIVATE ${SOURCE_DIR}/Drivers)
+target_include_directories(ChipControl_Get_Charge_Status PRIVATE ${TEST_DIR}/fakes)
