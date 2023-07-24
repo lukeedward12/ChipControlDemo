@@ -41,10 +41,11 @@ static LTC2943RegisterMap register_map = {
     0x08,  0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
     0x010, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17};
 
-// Control Register ADC Mode Mask -> Bits [7:8]: 1100 0000
+// Control Register ADC Mode Mask -> Bits [6:7]: 1100 0000
 #define CONTROL_REGISTER_ADC_MODE_MASK 0xC0
+#define CONTROL_REGISTER_ADC_MODE_BIT 6
 
-// Control Register (NOT) ADC Mode Mask -> Bits [7:8]: 0011 0000
+// Control Register (NOT) ADC Mode Mask -> Bits [6:7]: 0011 0000
 #define CONTROL_REGISTER_NOT_ADC_MODE_MASK 0x3F
 
 // Status Register Temperature Alert Mask -> Bits [4]: 0001 0000

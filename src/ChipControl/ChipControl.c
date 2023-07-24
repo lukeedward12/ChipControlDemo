@@ -1,5 +1,5 @@
 #include "ChipControl.h"
-#include "LCT2943.h"
+#include "LTC2943.h"
 
 uint8_t ChipControl_Initialize(void) {
   // Initialize the Device Driver
@@ -27,7 +27,8 @@ uint8_t ChipControl_Get_ADC_Mode(GetADCModeResponse *response) {
 
   // Figure out which ADC Mode we got
   response->mode =
-      probed_control_register & CONTROL_REGISTER_ADC_MODE_MASK;
+      (probed_control_register & CONTROL_REGISTER_ADC_MODE_MASK) >>
+      CONTROL_REGISTER_ADC_MODE_BIT;
 
   return CC_STATUS_OK;
 }
