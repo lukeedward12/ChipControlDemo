@@ -81,7 +81,7 @@ enum Alert { NoAlert = 0, Alert = 1 };
  * @brief Initializes the ChipControl Module and by ownership the LTC2943
  * Device Driver
  *
- * @return uint8_t
+ * @return uint8_t ChipControl Status Code
  */
 uint8_t ChipControl_Initialize(void);
 
@@ -93,8 +93,9 @@ typedef struct GetADCModeResponse {
  * @brief Probes the LTC2943's Control Register for the ADC Mode (Sleep,
  * Manual, Scan, or Auto) and populates a provided response struct
  *
- * @param response
- * @return uint8_t
+ * @param response LTC2943 probed ADC Mode (SLEEP = 0, MANUAL = 1, SCAN =
+ * 2, AUTO = 3 )
+ * @return uint8_t ChipControl Status Code
  */
 uint8_t ChipControl_Get_ADC_Mode(GetADCModeResponse *response);
 
@@ -106,8 +107,9 @@ typedef struct SetADCModeInput {
  * @brief Sets the LTC2943's Control Register with a desired ADC Mode
  * (Sleep, Manual, Scan, or Auto)
  *
- * @param input
- * @return uint8_t
+ * @param input Desired LTC2943 ADC Mode (SLEEP = 0, MANUAL = 1, SCAN = 2,
+ * AUTO = 3)
+ * @return uint8_t ChipControl Status Code
  */
 uint8_t ChipControl_Set_ADC_Mode(SetADCModeInput *input);
 
@@ -119,8 +121,9 @@ typedef struct GetTempStatusResponse {
  * @brief Probes the LTC2943's Status Register for the Temperature Alert
  * (Bit [4]) and populates a provided response struct
  *
- * @param response
- * @return uint8_t
+ * @param response LTC2943 probed Temperature Alert Status (NoAlert = 0,
+ * Alert = 1)
+ * @return uint8_t ChipControl Status Code
  */
 uint8_t ChipControl_Get_Temp_Status(GetTempStatusResponse *response);
 
@@ -130,11 +133,12 @@ typedef struct SetChargeThresholdInput {
 } SetChargeThresholdInput;
 
 /**
- * @brief Takes a desired max/min charge, converts from engineering units
+ * @brief Takes a desired max/min charge in mAh, converts from mAh
  * to 16 bit fixed width, and sets the LTC2943 Charge Threshold Registers
  *
- * @param input Desired max/min charge thresholds in mAH.
- * @return uint8_t
+ * @param input Desired max/min charge thresholds in mAh. Min: 0 Max: 2228
+ * mAh
+ * @return uint8_t ChipControl Status Code
  */
 uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input);
 
