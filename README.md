@@ -12,14 +12,14 @@ ChipControl APIs:
 * uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response)
 
 ## Directory Overview
-├── build                   # Compiled source and testing targets
-├── src                     # Source files
-├── test                    # Unit Testing
-├── build_test.sh
-├── ChipControl_Architecture.drawio
-├── CMakeLists.txt
-├── dockerfile
-└── README.md
+├── build                   # Compiled source and testing targets \
+├── src                     # Source files \
+├── test                    # Unit Testing \
+├── build_test.sh \
+├── ChipControl_Architecture.drawio \
+├── CMakeLists.txt \
+├── dockerfile \
+└── README.md \
 
 ## Requirements
 * Docker
