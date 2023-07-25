@@ -86,8 +86,8 @@ extern LTC2943RegisterMap register_map;
 
 // Battery Characteristics. As a battery for this example was not provided,
 // the example application provided in the LTC2943 (Pg. 11) will be used
-// such M = 4096, I_MAX = 100 Milli-Amps, Q_BAT = 2228 mAh, R_SENSE = 500
-// Milli-Ohms, and Q_LSb = 0.034 Milli-Ah
+// such that M = 4096, I_MAX = 100 Milli-Amps, Q_BAT = 2228 mAh, R_SENSE =
+// 500 Milli-Ohms, and Q_LSb = 0.034 Milli-Ah
 #define CHARGE_PRESCALAR 4096
 #define R_SENSE 500  // Milli-Ohm
 #define I_MAX 100    // Milli-Amps
@@ -145,7 +145,9 @@ typedef struct GetTempStatusResponse {
 
 /**
  * @brief Probes the LTC2943's Status Register for the Temperature Alert
- * (Bit [4]) and populates a provided response struct
+ * (Bit [4]) and populates a provided response struct. This API ignores
+ * whether the LTC2943's ADC is in sleep mode and the device's Alerts are
+ * being used.
  *
  * @param response LTC2943 probed Temperature Alert Status (NoAlert = 0,
  * Alert = 1)
@@ -177,7 +179,9 @@ typedef struct GetChargeStatusResponse {
 
 /**
  * @brief Probes the LTC2943's Status Register for the Charge Alerts
- * (Bit [2:3]) and populates a provided response struct
+ * (Bit [2:3]) and populates a provided response struct. This API ignores
+ * whether the LTC2943's ADC is in sleep mode and the device's Alerts are
+ * being used.
  *
  * @param response LTC2943 probed Charge Alert Status (NoAlert = 0,
  * Alert = 1)

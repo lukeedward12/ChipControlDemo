@@ -5,9 +5,9 @@
 #include <stdint.h>
 
 enum LTC2943StatusCodes {
-  LTC_STATUS_OK,
-  LTC_STATUS_ERROR,
-  LTC_STATUS_ERROR_PARAMS
+	LTC_STATUS_OK,
+	LTC_STATUS_ERROR,
+	LTC_STATUS_ERROR_PARAMS
 };
 
 bool LTC2943_Initialise(); // Initialise the driver
