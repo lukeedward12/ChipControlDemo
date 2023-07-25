@@ -13,7 +13,7 @@ WORKDIR /ChipControlDemo
 #COPY . /app
 
 # Build your C++ project using CMake
-CMD rm -rf build && mkdir build && cd build && cmake .. && make && ctest
+CMD rm -rf build && mkdir build && cd build && cmake .. && make clean && make && ctest
 
 # Set the default command for the container to your executable
 #CMD [ "./build/ChipControlDemo" ]

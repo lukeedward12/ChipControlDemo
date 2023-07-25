@@ -3,6 +3,35 @@
 
 #include <stdint.h>
 
+// clang-format off
+/***********************************************************************
+ * FILENAME :        ChipControl.h
+ *
+ * DESCRIPTION :
+ *       The ChipControl C Submodule provides APIs for Getting & Setting
+ *	 	 registers within the LTC2943 through a LTC2943 I2C
+ *		 Driver.
+ *
+ * PUBLIC FUNCTIONS :
+ *       uint8_t ChipControl_Initialize(void)
+ *       uint8_t ChipControl_Get_ADC_Mode(GetADCModeResponse *response)
+ *       uint8_t ChipControl_Set_ADC_Mode(SetADCModeInput *input)
+ *		 uint8_t ChipControl_Get_Temp_Status(GetTempStatusResponse *response)
+ *		 uint8_t ChipControl_Set_Charge_Thresholds(SetChargeThresholdInput *input)
+ * 		 uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response)
+ * 
+ * NOTES :
+ *       The ChipControl C Submodule is intended to be statically linked against a 
+ *  	 single-threaded C/C++ Application, and currently does use any resource
+ * 		 safety mechanisms to allow for API calls from multiple threads in a 
+ * 		 multi-threaded application.
+ * 		 
+ * AUTHOR :    Luke Edward       START DATE :    21 July 2023
+ *
+ *
+ **/
+// clang-format on
+
 enum ChipControlStatusCodes {
 	CC_STATUS_OK,
 	CC_STATUS_ERROR,
@@ -36,10 +65,7 @@ typedef struct LTC2943RegisterMap {
 	uint8_t Temperature_Threshold_Low;
 } LTC2943RegisterMap;
 
-static LTC2943RegisterMap register_map = {
-    0x00,  0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
-    0x08,  0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-    0x010, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17};
+extern LTC2943RegisterMap register_map;
 
 // Control Register ADC Mode Mask -> Bits [6:7]: 1100 0000
 #define CONTROL_REGISTER_ADC_MODE_MASK 0xC0
@@ -149,6 +175,14 @@ typedef struct GetChargeStatusResponse {
 
 } GetChargeStatusResponse;
 
+/**
+ * @brief Probes the LTC2943's Status Register for the Charge Alerts
+ * (Bit [2:3]) and populates a provided response struct
+ *
+ * @param response LTC2943 probed Charge Alert Status (NoAlert = 0,
+ * Alert = 1)
+ * @return uint8_t ChipControl Status Code
+ */
 uint8_t ChipControl_Get_Charge_Status(GetChargeStatusResponse *response);
 
 #endif // CHIPCONTROL_H

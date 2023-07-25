@@ -61,5 +61,5 @@ int main() {
 	uint8_t status_invalid = Set_Charge_Thresholds_INVALID();
 
 	uint8_t status = status_valid | status_invalid;
-	return 0;
+	return status;
 }
