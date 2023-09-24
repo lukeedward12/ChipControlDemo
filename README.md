@@ -30,7 +30,7 @@ All building and unit testing is handled with CMake and CTest in a Docker contai
 To build and test: \
     `. ./build_test.sh`
 
-## AstroScale Interview Question:
+## Open Ended Question:
 Question: without implementation, how would you handle this IO interface in a RTOS environment?
 
 To handle this within an RTOS environment, I would go with one of the following choices:
